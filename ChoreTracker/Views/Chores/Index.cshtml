@@ -1,0 +1,28 @@
+﻿<h1>Chore Tracker</h1>
+
+@foreach (var chore in Model)
+{
+    <h2>@chore.Name</h2>
+
+    <p>@chore.Description</p>
+
+    <p>Due: @chore.DueDate.ToShortDateString()</p>
+
+    <p>repeats every @chore.RecurrenceDays days</p>
+
+    @if (chore.IsCompleted)
+    {
+        <p>Completed</p>
+    }
+    else
+    {
+        <p>Not Completed</p>
+
+        <form method="post" action="/Chores/Complete">
+            <input type="hidden" name="id" value="@chore.Id" />
+            <button type="submit">Complete</button>    
+        </form>
+    }
+    <hr />
+}
+
