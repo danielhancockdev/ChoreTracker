@@ -33,7 +33,7 @@ namespace ChoreTracker.Controllers
         }
 
         // Handles Http Request for complete service
-
+        
         [HttpPost]
         public IActionResult Complete(int id)
         {
@@ -45,6 +45,17 @@ namespace ChoreTracker.Controllers
 
             return RedirectToAction("Index");
 
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateChoreViewModel createChoreViewModel)
+        {
+            return View(createChoreViewModel);
         }
     }
 }

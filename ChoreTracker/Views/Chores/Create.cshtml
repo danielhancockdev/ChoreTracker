@@ -1,0 +1,8 @@
+﻿@model ChoreTracker.ViewModels.CreateChoreViewModel
+<form asp-controller="Chores" asp-action="Create" method="post"> 
+    <input type="text" name="name" value="@Model.Name" />
+    <input type="text" name="description" value="@Model.Description" />
+    <input type="date" name="date" value="@Model.DueDate" />
+    <input type="number" name="" value="@Model.RecurrenceDays" />
+    <button>Create </button>
+</form>
