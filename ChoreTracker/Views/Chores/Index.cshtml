@@ -1,28 +1,20 @@
-﻿<h1>Chore Tracker</h1>
+﻿@model List<ChoreTracker.ViewModels.ChoreViewModel>
 
-@foreach (var chore in Model)
+<h1>Chore Tracker</h1>
+
+@foreach (var choreViewModel in Model)
 {
-    <h2>@chore.Name</h2>
+    <h2>@choreViewModel.Chore.Name</h2>
 
-    <p>@chore.Description</p>
+    <p>@choreViewModel.Chore.Description</p>
 
-    <p>Due: @chore.DueDate.ToShortDateString()</p>
+    <p>Due: @choreViewModel.Chore.DueDate.ToShortDateString()</p>
 
-    <p>repeats every @chore.RecurrenceDays days</p>
+    <p>repeats every @choreViewModel.Chore.RecurrenceDays days</p>
+    
+    <p>Status: @choreViewModel.Status</p>
 
-    @if (chore.IsCompleted)
-    {
-        <p>Completed</p>
-    }
-    else
-    {
-        <p>Not Completed</p>
-
-        <form method="post" action="/Chores/Complete">
-            <input type="hidden" name="id" value="@chore.Id" />
-            <button type="submit">Complete</button>    
-        </form>
-    }
+  
     <hr />
 }
 

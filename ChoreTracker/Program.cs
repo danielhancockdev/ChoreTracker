@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//DI, for ChoreServive
 builder.Services.AddSingleton<ChoreService>();
 
 var app = builder.Build();
