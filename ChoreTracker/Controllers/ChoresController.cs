@@ -2,6 +2,7 @@
 using ChoreTracker.Models;
 using ChoreTracker.Services;
 using ChoreTracker.ViewModels;
+using ChoreTracker.Interfaces;
 
 namespace ChoreTracker.Controllers
 {
@@ -9,9 +10,9 @@ namespace ChoreTracker.Controllers
     {
         // Store ChoreService provided by ASP.NET DI
 
-        private readonly ChoreService _choreService;
+        private readonly IChoreService _choreService;
 
-        public ChoresController(ChoreService choreService)
+        public ChoresController(IChoreService choreService)
         {
             _choreService = choreService;
         }

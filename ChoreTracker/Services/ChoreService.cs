@@ -1,7 +1,8 @@
-﻿using ChoreTracker.Models;
+﻿using ChoreTracker.Interfaces;
+using ChoreTracker.Models;
 namespace ChoreTracker.Services
 {
-    public class ChoreService
+    public class ChoreService : IChoreService
     {
        
         // creating mock chores for testing

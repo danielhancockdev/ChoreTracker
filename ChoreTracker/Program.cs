@@ -1,3 +1,4 @@
+using ChoreTracker.Interfaces;
 using ChoreTracker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //DI, for ChoreServive
-builder.Services.AddSingleton<ChoreService>();
+builder.Services.AddSingleton<IChoreService, ChoreService>();
 
 var app = builder.Build();
 
