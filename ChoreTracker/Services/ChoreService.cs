@@ -1,6 +1,7 @@
 ﻿using ChoreTracker.Interfaces;
 using ChoreTracker.Models;
 using ChoreTracker.ViewModels;
+using Microsoft.AspNetCore.Http.HttpResults;
 namespace ChoreTracker.Services
 {
     public class ChoreService : IChoreService
@@ -76,6 +77,17 @@ namespace ChoreTracker.Services
             return chores;
         }
 
+        public Chore GetChoreById(int id)
+        {
+            var chore = chores.FirstOrDefault(c => c.Id == id);
+            if (chore == null)
+            {
+                return null;
+            }
+
+            return chore;
+        }
+
         // Logic for complete button press
 
         public bool Complete(int id)
@@ -91,7 +103,7 @@ namespace ChoreTracker.Services
             return true;
         }
 
-        public Chore Create(CreateChoreViewModel createChoreViewModel)
+        public void Create(CreateChoreViewModel createChoreViewModel)
         {
             var chore = new Chore();
             {
@@ -104,8 +116,36 @@ namespace ChoreTracker.Services
                 chore.CompletedDate = null;
             }
             chores.Add(chore);
-            return chore;
+            
         }
+
+        public void Edit(EditChoreViewModel editChoreViewModel)
+        {
+            var chore = chores.FirstOrDefault(c => c.Id == editChoreViewModel.Id);
+
+            if (chore == null)
+            {
+                return;
+            }
+
+            chore.Name = editChoreViewModel.Name;
+            chore.Description = editChoreViewModel.Description;
+            chore.DueDate = editChoreViewModel.DueDate;
+            chore.RecurrenceDays = editChoreViewModel.RecurrenceDays;
+        }
+
+        public bool Delete(int id)
+        {
+            var chore = chores.FirstOrDefault(chore => chore.Id == id);
+            if (chore == null)
+            {
+                return false;
+            }
+            chores.Remove(chore);
+            return true;
+        }
+
+
     }
 }
 

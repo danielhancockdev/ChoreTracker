@@ -8,7 +8,10 @@ namespace ChoreTracker.Interfaces
         string GetChoreStatus(Chore chore);
         void ResetChoreCompletion(List<Chore> chores);
         List<Chore> GetAll();
+        Chore GetChoreById(int id);
         bool Complete(int id);
-        Chore Create(CreateChoreViewModel createChoreViewModel);
+        void Create(CreateChoreViewModel createChoreViewModel);
+        bool Delete(int id);
+        void Edit(EditChoreViewModel editChoreViewModel); 
     }
 }

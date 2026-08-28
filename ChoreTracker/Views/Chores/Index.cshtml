@@ -21,13 +21,15 @@
             <button type="submit">Complete</button>
         </form>
     }
-    <form asp-controller="Chores" asp-action="Complete" method="post">
+    <form asp-controller="Chores" asp-action="Edit" method="get">
         <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
-        <button type="submit">Delete Chore</button>
-        <button type="submit">Edit Chore</button>
+        <button type="submit">Edit</button>
     </form>
-    <hr />
-    
+    <form asp-controller="Chores" asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
+        <button type="submit">Delete</button>
+    </form>
+    <hr /> 
 }
 <form asp-controller="Chores" asp-action="Create" method="get">
     <button type="submit">Create Chore</button>
