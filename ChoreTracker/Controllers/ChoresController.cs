@@ -50,13 +50,17 @@ namespace ChoreTracker.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var createChoreViewModel = new CreateChoreViewModel();
+
+            return View(createChoreViewModel);
         }
 
         [HttpPost]
         public IActionResult Create(CreateChoreViewModel createChoreViewModel)
         {
-            return View(createChoreViewModel);
+            _choreService.Create(createChoreViewModel);
+            return RedirectToAction("Index");
+            
         }
     }
 }

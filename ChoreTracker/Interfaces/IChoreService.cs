@@ -1,4 +1,5 @@
 ﻿using ChoreTracker.Models;
+using ChoreTracker.ViewModels;
 
 namespace ChoreTracker.Interfaces
 {
@@ -8,6 +9,6 @@ namespace ChoreTracker.Interfaces
         void ResetChoreCompletion(List<Chore> chores);
         List<Chore> GetAll();
         bool Complete(int id);
-
+        Chore Create(CreateChoreViewModel createChoreViewModel);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ChoreTracker.Interfaces;
 using ChoreTracker.Models;
+using ChoreTracker.ViewModels;
 namespace ChoreTracker.Services
 {
     public class ChoreService : IChoreService
@@ -84,11 +85,26 @@ namespace ChoreTracker.Services
             {
                 return false;
             }
-
             chore.IsCompleted = true;
             chore.CompletedDate = DateTime.Today;
             chore.DueDate = chore.DueDate.AddDays(chore.RecurrenceDays);
             return true;
+        }
+
+        public Chore Create(CreateChoreViewModel createChoreViewModel)
+        {
+            var chore = new Chore();
+            {
+                chore.Id = chores.Max(c => c.Id) + 1;
+                chore.Name = createChoreViewModel.Name;
+                chore.Description = createChoreViewModel.Description;
+                chore.DueDate = createChoreViewModel.DueDate;
+                chore.RecurrenceDays = createChoreViewModel.RecurrenceDays;
+                chore.IsCompleted = false;
+                chore.CompletedDate = null;
+            }
+            chores.Add(chore);
+            return chore;
         }
     }
 }
