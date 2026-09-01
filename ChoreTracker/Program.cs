@@ -1,13 +1,22 @@
 using ChoreTracker.Interfaces;
 using ChoreTracker.Services;
+using ChoreTracker.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//DI, for ChoreServive
-builder.Services.AddSingleton<IChoreService, ChoreService>();
+// DI, for ChoreServive
+builder.Services.AddScoped<IChoreService, ChoreService>();
+// DI, for DbContext
+
+var connectionString = builder.Configuration.GetConnectionString("ChoreDatabase");
+
+builder.Services.AddDbContext<ChoreDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
 
 var app = builder.Build();
 
