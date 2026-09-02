@@ -6,6 +6,5 @@ namespace ChoreTracker.ViewModels
     {
         public Chore Chore {  get; set; }
         public string Status { get; set; }
-
     }
 }

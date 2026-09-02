@@ -1,39 +1,48 @@
 ﻿@model List<ChoreTracker.ViewModels.ChoreViewModel>
 
+
+
+
+@* Chore Title *@
 <h1>Chore Tracker</h1>
 
-@foreach (var choreViewModel in Model)
-{
-    <h2>@choreViewModel.Chore.Name</h2>
-
-    <p>@choreViewModel.Chore.Description</p>
-
-    <p>Due: @choreViewModel.Chore.DueDate.ToShortDateString()</p>
-
-    <p>repeats every @choreViewModel.Chore.RecurrenceDays days</p>
-
-    <p>Status: @choreViewModel.Status</p>
-
-    if (choreViewModel.Status == "Due Today" || choreViewModel.Status == "Late")
+@* Main Content *@
+<div>   
+    @* Chore Cards *@
+    @foreach (var choreViewModel in Model)
     {
-        <form asp-controller="Chores" asp-action="Complete" method="post">
+        <h2>@choreViewModel.Chore.Name</h2>
+
+        <p>@choreViewModel.Chore.Description</p>
+
+        <p>Due: @choreViewModel.Chore.DueDate.ToShortDateString()</p>
+
+        <p>repeats every @choreViewModel.Chore.RecurrenceDays days</p>
+
+        <p>Status: @choreViewModel.Status</p>
+
+        if (choreViewModel.Status == "Due Today" || choreViewModel.Status == "Late")
+        {
+            <form asp-controller="Chores" asp-action="Complete" method="post">
+                <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
+                <button type="submit">Complete</button>
+            </form>
+        }
+        <form asp-controller="Chores" asp-action="Edit" method="get">
             <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
-            <button type="submit">Complete</button>
+            <button type="submit">Edit</button>
         </form>
+        <form asp-controller="Chores" asp-action="Delete" method="post">
+            <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
+            <button type="submit">Delete</button>
+        </form>
+        <hr />
     }
-    <form asp-controller="Chores" asp-action="Edit" method="get">
-        <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
-        <button type="submit">Edit</button>
+    <form asp-controller="Chores" asp-action="Create" method="get">
+        <button type="submit">Create Chore</button>
     </form>
-    <form asp-controller="Chores" asp-action="Delete" method="post">
-        <input type="hidden" name="id" value="@choreViewModel.Chore.Id" />
-        <button type="submit">Delete</button>
-    </form>
-    <hr /> 
-}
-<form asp-controller="Chores" asp-action="Create" method="get">
-    <button type="submit">Create Chore</button>
-</form>
+</div>
+
 
 
 

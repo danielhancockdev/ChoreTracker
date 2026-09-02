@@ -8,6 +8,7 @@ namespace ChoreTracker.Data
         public ChoreDbContext(DbContextOptions<ChoreDbContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<Chore> Chores { get; set; }
